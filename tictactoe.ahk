@@ -1,45 +1,14 @@
 #Requires AutoHotkey v2.0 
 #SingleInstance Force
+
+#Include input.ahk
+#Include slot.ahk
+#Include table.ahk
+#Include turn.ahk
+
 ListVars()
 game := tictactoe()
-class slot
-{
-    __New(position)
-    {
-        this.line     := this.CalculateLine(position)
-        this.column   := this.CalculateColumn(position)
-        this.value    := 0
-        this.Test(position,this.line,this.column)
-    }
-    Test(position,line,column)
-    {
-        testTable := [[1,1],[1,2],[1,3],[2,1],[2,2],[2,3],[3,1],[3,2],[3,3]]
-        if testTable[position][1] = line && testTable[position][2] = column
-            return MsgBox("Slot " position " test...OK!",A_ThisFunc,"T5")
-        else
-            return MsgBox("Slot " position "'s test failed: `n position " position "`n expected []" testTable[position][1] "," testTable[position][2] "]`n but got [" line "," column "]" ,A_ThisFunc,"T120")
-    }
-    CalculateColumn(position)
-    {
-        return Mod(position - 1, 3) + 1
-    }
-    CalculateLine(position)
-    {
-        return Floor((position - 1) / 3) + 1
-    }
-    
-}
-class table
-{
-    slots := []
-    __New(){
-        this.slots.Capacity := 9
-        loop this.slots.Capacity
-        {
-            this.slots.Push(slot(A_Index))
-        }
-    }
-}
+
 class tictactoe
 {
     __New()
@@ -48,32 +17,4 @@ class tictactoe
         this.turn := turn()
 
     }
-}
-class turn
-{
-    __New(first := 1)
-    {
-        this.playerTable := [1,2]
-        this.currentPlayer := first
-        this.nextPlayer := this.playerTable[++first]
-        this.Test()
-    }
-    __Call()
-    {
-        return this.currentPlayer
-    }
-    End()
-    {
-        newCurrentPlayer := this.nextPlayer
-        newNextPlayer := this.currentPlayer
-        this.currentPlayer := newCurrentPlayer
-        this.nextPlayer := newNextPlayer
-    }
-    Test() {
-        ;ah depois.
-    }
-}
-class input
-{
-    
 }
