@@ -1,4 +1,4 @@
-class slot
+class slot ; mudar pra bitwise e masks
 {
     __New(position)
     {
@@ -6,7 +6,7 @@ class slot
         this.column   := this.CalculateColumn(position)
         this.isX := false
         this.isO := false
-        this.value := this.isX this.isO
+        this.value := &this.isX &this.isO
         this.Test(position,this.line,this.column)
     }
     Test(position,line,column)
@@ -29,18 +29,16 @@ class slot
     }
     GetsX()
     {
-        if this.isX = false and this.isO = false
+        if this.value = 00
             {
                 this.isX := true
-                this.isO := false
             }
     }
     GetsO()
     {
-        if this.isX = false and this.isO = false
+        if this.value = 00
         {
             this.isO := true
-            this.isX := false
         }
     }
 }
