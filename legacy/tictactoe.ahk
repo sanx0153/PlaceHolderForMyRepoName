@@ -13,7 +13,7 @@ class tictactoe
 {
     __New()
     {
-        this.table := table()
+        this.board := board() 
         this.turn := turn()
 
     }
