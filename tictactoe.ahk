@@ -59,9 +59,10 @@ class board
                              O E E O E E O E E, E O E E O E E O E, E E O E E O E E O,
                              X E E E X E E E X, E E X E X E X E E, 
                              O E E E O E E E O, E E O E O E O E E]
+        currentState := this.boardState()
         for , state in winnerBoardState
         {
-            if this.boardState() && state == state
+            if currentState && state == state
             {
                 return true
             } 
