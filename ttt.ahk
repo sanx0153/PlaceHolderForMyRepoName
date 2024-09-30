@@ -1,3 +1,4 @@
+#Include board.ahk
 class tictactoe
 {
     __New()

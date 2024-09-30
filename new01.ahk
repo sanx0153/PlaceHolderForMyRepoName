@@ -1,4 +1,5 @@
 #Requires AutoHotkey v2.0
+#Include ttt.ahk
 
 game := tictactoe()
 game.start()
