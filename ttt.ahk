@@ -8,11 +8,23 @@ class tictactoe
     }
     CreateBoard()
     {
-        return Board()
+        return Board(&this)
     }
     CreateWindow()
     {
         return Gui("AlwaysOnTop -Border -Caption -Resize")
+    }
+    GameOver()
+    {
+        return this.Start()
+    }
+    PlayO(line,column)
+    {
+        this.board.PlayO(line,column)
+    }
+    PlayX(line,column)
+    {
+        this.board.PlayX(line,column)
     }
     Start()
     {

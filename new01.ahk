@@ -8,3 +8,6 @@ game.playO(1,2)
 game.playX(2,2)
 game.playO(2,3)
 game.playX(3,3)
+MsgBox(game.board.state) ; shows board state as a binary
+
+; next: input, output, AI

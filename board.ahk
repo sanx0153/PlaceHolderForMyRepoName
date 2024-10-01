@@ -2,8 +2,9 @@
 #Include square.ahk
 class Board
 {
-    __New()
+    __New(&parent)
     {
+        this.parent := &parent
         this.squares := this.CreateSquares()
         this.winningStates := this.CreateWinningStatesTable()
         this.currentPlayer := ""
@@ -12,6 +13,17 @@ class Board
     {
         index := (((line - 1) * 3) + column)
         return index
+    }
+    ChangeCurrentPlayer()
+    {
+        switch this.currentPlayer,0 {
+            case "O":
+                return "X"
+            case "X":
+                return "O"
+            default:
+                return Error("expecting O or X")
+        }
     }
     CompareWinningStates(board)
     {
@@ -29,34 +41,47 @@ class Board
         squares := []
         squares.Capacity := 9
         squares.Default := Square()
+        loop squares.Capacity
+        {
+            squares.Push(Square())
+        }
         return squares
+    }
+    CreateWinningStatesTable()
+    {
+
     }
     GameOver(winner)
     {
-
+        MsgBox(winner "won the game!")
+        return this.parent.GameOver()
     }
     GetsInput(OorX,line,column)
     {
         index := this.CalculateIndex(line,column)
         this.squares[index].Gets(OorX)
     }
-    GetState()
+    state
     {
-        state := ""
-        loop this.squares.Capacity
+        get
         {
-            state .= this.squares[A_Index].state
+            state := ""
+            loop this.squares.Capacity
+            {
+                state .= this.squares[A_Index].state
+            }
+            return state
         }
-        return state
     }
     JudgeState()
     {
-        currentState := this.GetState()
+        currentState := this.state
         endgame := (this.CompareWinningStates(currentState) ? true : false)
         if endgame = true
         {
-            this.GameOver(this.currentPlayer)
+            return this.GameOver(this.currentPlayer)
         }
+        this.currentPlayer := this.ChangeCurrentPlayer()
     }
     PlayO(line,column)
     {
