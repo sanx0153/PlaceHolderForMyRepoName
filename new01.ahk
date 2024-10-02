@@ -1,4 +1,8 @@
 #Requires AutoHotkey v2.0
+#Include square.ahk
+#Include board.ahk
+#Include squareoutput.ahk
+#Include output.ahk
 #Include ttt.ahk
 
 game := tictactoe()

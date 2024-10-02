@@ -1,18 +1,19 @@
 #Include board.ahk
+#Include output.ahk
 class tictactoe
 {
     __New()
     {
         this.board := this.CreateBoard()
-        this.output := this.CreateWindow()
+        this.output := this.CreateOutput()
     }
     CreateBoard()
     {
         return Board(&this)
     }
-    CreateWindow()
+    CreateOutput()
     {
-        return Gui("AlwaysOnTop -Border -Caption -Resize")
+        return Output(&this)
     }
     GameOver()
     {
@@ -29,5 +30,7 @@ class tictactoe
     Start()
     {
         MsgBox("Game Started",,"t1")
+        this.board.Start()
+        this.output.Start(&this.board)
     }
 }

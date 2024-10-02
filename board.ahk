@@ -93,4 +93,8 @@ class Board
         this.currentPlayer := "X"
         this.GetsInput("X",line,column)
     }
+    Start()
+    {
+        
+    }
 }
