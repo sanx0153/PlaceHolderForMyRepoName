@@ -4,16 +4,16 @@ class tictactoe
 {
     __New()
     {
-        this.board := this.CreateBoard()
-        this.output := this.CreateOutput()
+        this.board := Board(this)
+        this.output := Output(this,this.board)
     }
-    CreateBoard()
+    state
     {
-        return Board(&this)
-    }
-    CreateOutput()
-    {
-        return Output(&this)
+        get
+        {
+            answer := this.board.state
+            return answer
+        }
     }
     GameOver()
     {
@@ -31,6 +31,6 @@ class tictactoe
     {
         MsgBox("Game Started",,"t1")
         this.board.Start()
-        this.output.Start(&this.board)
+        this.output.Start()
     }
 }

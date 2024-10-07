@@ -2,39 +2,15 @@
 #Include square.ahk
 class Board
 {
-    __New(&parent)
+    __New(game)
     {
-        this.parent := &parent
+        this.game := game
         this.squares := this.CreateSquares()
-        this.winningStates := this.CreateWinningStatesTable()
-        this.currentPlayer := ""
     }
     CalculateIndex(line,column)
     {
         index := (((line - 1) * 3) + column)
         return index
-    }
-    ChangeCurrentPlayer()
-    {
-        switch this.currentPlayer,0 {
-            case "O":
-                return "X"
-            case "X":
-                return "O"
-            default:
-                return Error("expecting O or X")
-        }
-    }
-    CompareWinningStates(board)
-    {
-        for winningState, state in this.winningStates
-        {
-            if board && state == state
-            {
-                return true
-            }
-        }
-        return false
     }
     CreateSquares()
     {
@@ -46,15 +22,6 @@ class Board
             squares.Push(Square())
         }
         return squares
-    }
-    CreateWinningStatesTable()
-    {
-
-    }
-    GameOver(winner)
-    {
-        MsgBox(winner "won the game!")
-        return this.parent.GameOver()
     }
     GetsInput(OorX,line,column)
     {

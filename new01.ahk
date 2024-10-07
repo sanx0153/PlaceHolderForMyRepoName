@@ -1,7 +1,8 @@
 #Requires AutoHotkey v2.0
+#Include myBase.ahk
 #Include square.ahk
 #Include board.ahk
-#Include squareoutput.ahk
+#Include GUImanager.ahk
 #Include output.ahk
 #Include ttt.ahk
 
