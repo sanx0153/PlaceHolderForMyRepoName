@@ -1,15 +1,21 @@
 #Requires AutoHotkey v2.0
 
-game   := tictactoe()
 input  := inputmanager()
 logic  := logicmanager()
 output := outputmanager()
+game   := tictactoe()
 class tictactoe
 {
+    currentPlayer := this.startingPlayer
+    __New()
+    {
+        this.startingPlayer := "X"
+    }
     input
     {
         get
         {
+            global
             return &input
         }
     }
@@ -17,6 +23,7 @@ class tictactoe
     {
         get
         {
+            global
             return &logic
         }
     }
@@ -24,6 +31,7 @@ class tictactoe
     {
         get
         {
+            global
             return &output
         }
     }
@@ -53,6 +61,10 @@ class boardmanager {
             return answer
         }
     }
+    try(line,column)
+    {
+        this.board[line][column].Get(game.currentPlayer)
+    }
 }
 
 class inputmanager
@@ -78,11 +90,7 @@ class logicmanager
     board := boardmanager()
     try(line,column)
     {
-        if this.board.SquareState(line,column) != 00
-        {
-            return MsgBox("Esse espaço está indisponível")
-        }
-        
+        this.board.try(line,column)
     }
 }
 
